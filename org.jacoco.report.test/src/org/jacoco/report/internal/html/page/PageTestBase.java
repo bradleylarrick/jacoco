@@ -63,6 +63,10 @@ public abstract class PageTestBase {
 				return table;
 			}
 
+			public String getHeaderText() {
+				return "CustomHeader";
+			}
+
 			public String getFooterText() {
 				return "CustomFooter";
 			}

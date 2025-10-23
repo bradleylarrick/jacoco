@@ -46,6 +46,13 @@ public interface IHTMLReportContext {
 	Table getTable();
 
 	/**
+	 * Returns a string of textual information to include in every page header.
+	 *
+	 * @return header text or empty string
+	 */
+	String getHeaderText();
+
+	/**
 	 * Returns a string of textual information to include in every page footer.
 	 *
 	 * @return footer text or empty string

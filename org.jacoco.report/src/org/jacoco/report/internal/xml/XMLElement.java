@@ -245,6 +245,27 @@ public class XMLElement {
 	}
 
 	/**
+	 * Adds the given text verbatim; i.e., no surrounding tag. The current tag
+	 * is closed.
+	 *
+	 * @param text
+	 *            the text to add
+	 * @throws IOException
+	 *             in case of problems with the underlying output or if the
+	 *             element is already closed.
+	 */
+	public final void verbatim(final String text) throws IOException {
+		if (closed) {
+			throw new IOException(format("Element %s already closed.", name));
+		}
+		finishOpenTag();
+		if (lastchild != null) {
+			lastchild.close();
+		}
+		writer.write(text);
+	}
+
+	/**
 	 * Creates a new child element for this element. Might be overridden in
 	 * subclasses to return an instance of the subclass.
 	 *

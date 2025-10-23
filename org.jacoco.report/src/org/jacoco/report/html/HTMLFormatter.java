@@ -53,6 +53,8 @@ public class HTMLFormatter implements IHTMLReportContext {
 
 	private Locale locale = Locale.getDefault();
 
+	private String headerText = "";
+
 	private String footerText = "";
 
 	private String outputEncoding = "UTF-8";
@@ -91,6 +93,16 @@ public class HTMLFormatter implements IHTMLReportContext {
 	 */
 	public void setLocale(final Locale locale) {
 		this.locale = locale;
+	}
+
+	/**
+	 * Sets the optional text that should be included in every header page.
+	 *
+	 * @param headerText
+	 *            header text
+	 */
+	public void setHeaderText(final String headerText) {
+		this.headerText = headerText;
 	}
 
 	/**
@@ -154,6 +166,10 @@ public class HTMLFormatter implements IHTMLReportContext {
 				CounterColumn.newMissed(entity, locale), false);
 		table.add(label, Styles.CTR2, CounterColumn.newTotal(entity, locale),
 				false);
+	}
+
+	public String getHeaderText() {
+		return headerText;
 	}
 
 	public String getFooterText() {

@@ -108,13 +108,16 @@ public class PackagePageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("index.html"));
 
+		// custom header
+		assertEquals("CustomHeader",
+				support.findStr(doc, "/html/body/div[1]/text()"));
 		// Expect "Source Files" links
-		assertEquals("index.source.html",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a/@href"));
-		assertEquals("el_source",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a/@class"));
+		assertEquals("index.source.html", support.findStr(doc,
+				"/html/body/div[1]/div[1]/span[1]/a/@href"));
+		assertEquals("el_source", support.findStr(doc,
+				"/html/body/div[1]//div[1]/span[1]/a/@class"));
 		assertEquals("Source Files",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/div[1]//div[1]/span[1]/a"));
 		assertEquals("el_class", support.findStr(doc,
 				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("Foo1", support.findStr(doc,
@@ -148,8 +151,11 @@ public class PackagePageTest extends PageTestBase {
 
 		// Expect no "Source Files" link
 		final Document doc = support.parse(output.getFile("index.html"));
+		// custom header
+		assertEquals("CustomHeader",
+				support.findStr(doc, "/html/body/div[1]/text()"));
 		assertEquals("Sessions",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/div[1]/div[1]/span[1]/a"));
 
 		// Expect no source files page:
 		output.assertNoFile("index.source.html");

@@ -59,11 +59,19 @@ public abstract class AbstractReportMojo extends AbstractMojo
 	String title;
 
 	/**
+	 * Header text used in HTML report pages.
+	 *
+	 * @since 0.8.15
+	 */
+	@Parameter(property = "jacoco.header")
+	String header;
+
+	/**
 	 * Footer text used in HTML report pages.
 	 *
 	 * @since 0.7.7
 	 */
-	@Parameter
+	@Parameter(property = "jacoco.footer")
 	String footer;
 
 	/**

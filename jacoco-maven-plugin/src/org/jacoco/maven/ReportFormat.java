@@ -38,6 +38,9 @@ public enum ReportFormat {
 			final HTMLFormatter htmlFormatter = new HTMLFormatter();
 			htmlFormatter.setOutputEncoding(mojo.outputEncoding);
 			htmlFormatter.setLocale(locale);
+			if (mojo.header != null) {
+				htmlFormatter.setHeaderText(mojo.header);
+			}
 			if (mojo.footer != null) {
 				htmlFormatter.setFooterText(mojo.footer);
 			}

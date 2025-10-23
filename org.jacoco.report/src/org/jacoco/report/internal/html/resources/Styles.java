@@ -23,6 +23,9 @@ public final class Styles {
 	/** Info links within the Breadcrumb bar */
 	public static final String INFO = "info";
 
+	/** Header */
+	public static final String HEADER = "header";
+
 	/** Footer */
 	public static final String FOOTER = "footer";
 

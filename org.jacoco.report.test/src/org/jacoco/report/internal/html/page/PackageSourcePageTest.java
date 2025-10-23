@@ -96,12 +96,15 @@ public class PackageSourcePageTest extends PageTestBase {
 		page.render();
 
 		final Document doc = support.parse(output.getFile("index.source.html"));
-		assertEquals("index.html",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a/@href"));
-		assertEquals("el_class",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a/@class"));
+		// custom header
+		assertEquals("CustomHeader",
+				support.findStr(doc, "/html/body/div[1]/text()"));
+		assertEquals("index.html", support.findStr(doc,
+				"/html/body/div[1]/div[1]/span[1]/a/@href"));
+		assertEquals("el_class", support.findStr(doc,
+				"/html/body/div[1]/div[1]/span[1]/a/@class"));
 		assertEquals("Classes",
-				support.findStr(doc, "/html/body/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/div[1]/div[1]/span[1]/a"));
 		assertEquals("el_source", support.findStr(doc,
 				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("Src1.java", support.findStr(doc,

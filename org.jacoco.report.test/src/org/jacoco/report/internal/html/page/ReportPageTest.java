@@ -103,17 +103,20 @@ public class ReportPageTest extends PageTestBase {
 		assertEquals("jacoco-resources/report.css", support.findStr(doc,
 				"/html/head/link[@rel='stylesheet']/@href"));
 
+		// custom header
+		assertEquals("CustomHeader",
+				support.findStr(doc, "/html/body/div[1]/text()"));
 		// bread crumb
 		assertEquals("Report", support.findStr(doc,
-				"/html/body/div[@class='breadcrumb']/a[1]/text()"));
+				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/text()"));
 		assertEquals("Report.html", support.findStr(doc,
-				"/html/body/div[@class='breadcrumb']/a[1]/@href"));
+				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/@href"));
 		assertEquals("el_report", support.findStr(doc,
-				"/html/body/div[@class='breadcrumb']/a[1]/@class"));
+				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/@class"));
 		assertEquals("Test", support.findStr(doc,
-				"/html/body/div[@class='breadcrumb']/span[2]/text()"));
+				"/html/body/div[1]/div[@class='breadcrumb']/span[2]/text()"));
 		assertEquals("el_group", support.findStr(doc,
-				"/html/body/div[@class='breadcrumb']/span[2]/@class"));
+				"/html/body/div[1]/div[@class='breadcrumb']/span[2]/@class"));
 
 		// Header
 		assertEquals("Test", support.findStr(doc, "/html/body/h1/text()"));

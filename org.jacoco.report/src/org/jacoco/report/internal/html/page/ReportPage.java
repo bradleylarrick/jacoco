@@ -38,6 +38,11 @@ public abstract class ReportPage implements ILinkable {
 	protected final IHTMLReportContext context;
 
 	/**
+	 * The root reference for the site directory.
+	 */
+	private String siteRoot;
+
+	/**
 	 * Creates a new report page.
 	 *
 	 * @param parent
@@ -74,6 +79,7 @@ public abstract class ReportPage implements ILinkable {
 		final HTMLElement html = new HTMLElement(
 				folder.createFile(getFileName()), context.getOutputEncoding());
 		html.attr("lang", context.getLocale().getLanguage());
+		computeVariables();
 		head(html.head());
 		body(html.body());
 		html.close();
@@ -100,10 +106,7 @@ public abstract class ReportPage implements ILinkable {
 
 	private void body(final HTMLElement body) throws IOException {
 		body.attr("onload", getOnload());
-		final HTMLElement navigation = body.div(Styles.BREADCRUMB);
-		navigation.attr("id", "breadcrumb");
-		infoLinks(navigation.span(Styles.INFO));
-		breadcrumb(navigation, folder);
+		header(body);
 		body.h1().text(getLinkLabel());
 		content(body);
 		footer(body);
@@ -130,6 +133,15 @@ public abstract class ReportPage implements ILinkable {
 		span.a(context.getSessionsPage(), folder);
 	}
 
+	private void header(final HTMLElement body) throws IOException {
+		final HTMLElement header = body.div(Styles.HEADER);
+		header.verbatim(substituteSiteRoot(context.getHeaderText()));
+		final HTMLElement navigation = header.div(Styles.BREADCRUMB);
+		navigation.attr("id", "breadcrumb");
+		infoLinks(navigation.span(Styles.INFO));
+		breadcrumb(navigation, folder);
+	}
+
 	private void breadcrumb(final HTMLElement div,
 			final ReportOutputFolder base) throws IOException {
 		breadcrumbParent(parent, div, base);
@@ -148,12 +160,22 @@ public abstract class ReportPage implements ILinkable {
 
 	private void footer(final HTMLElement body) throws IOException {
 		final HTMLElement footer = body.div(Styles.FOOTER);
-		final HTMLElement versioninfo = footer.span(Styles.RIGHT);
-		versioninfo.text("Created with ");
-		versioninfo.a(JaCoCo.HOMEURL).text("JaCoCo");
-		versioninfo.text(" ");
-		versioninfo.text(JaCoCo.VERSION);
-		footer.text(context.getFooterText());
+		final HTMLElement versionInfo = footer.span(Styles.RIGHT);
+		versionInfo.text("Created with ");
+		versionInfo.a(JaCoCo.HOMEURL).text("JaCoCo");
+		versionInfo.text(" ");
+		versionInfo.text(JaCoCo.VERSION);
+		footer.verbatim(substituteSiteRoot(context.getFooterText()));
+	}
+
+	private void computeVariables() {
+		String filename = context.getResources().getLink(folder, "fake.file");
+		String path = filename.substring(0, filename.lastIndexOf('/'));
+		siteRoot = path.replaceAll("jacoco-resources", "..");
+	}
+
+	private String substituteSiteRoot(String path) {
+		return path.replace("${siteRoot}", siteRoot);
 	}
 
 	/**
