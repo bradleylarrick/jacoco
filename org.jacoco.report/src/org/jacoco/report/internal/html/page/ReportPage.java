@@ -98,6 +98,11 @@ public abstract class ReportPage implements ILinkable {
 		head.link("stylesheet",
 				context.getResources().getLink(folder, Resources.STYLESHEET),
 				"text/css");
+		if (context.getAddStylesheets() != null) {
+			for (final String stylesheet : context.getAddStylesheets()) {
+				head.link("stylesheet", stylesheet, "text/css");
+			}
+		}
 		head.link("shortcut icon",
 				context.getResources().getLink(folder, "report.gif"),
 				"image/gif");
@@ -122,7 +127,7 @@ public abstract class ReportPage implements ILinkable {
 	}
 
 	/**
-	 * Inserts additional links on the top right corner.
+	 * Inserts additional links in the top right corner.
 	 *
 	 * @param span
 	 *            parent element

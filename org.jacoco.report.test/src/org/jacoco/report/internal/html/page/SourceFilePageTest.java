@@ -54,8 +54,12 @@ public class SourceFilePageTest extends PageTestBase {
 		// additional style sheet
 		assertEquals("jacoco-resources/report.css", support.findStr(result,
 				"/html/head/link[@rel='stylesheet'][1]/@href"));
+		assertEquals("jacoco-resources/additionalCss1.css", support.findStr(
+				result, "/html/head/link[@rel='stylesheet'][2]/@href"));
+		assertEquals("jacoco-resources/additionalCss2.css", support.findStr(
+				result, "/html/head/link[@rel='stylesheet'][3]/@href"));
 		assertEquals("jacoco-resources/prettify.css", support.findStr(result,
-				"/html/head/link[@rel='stylesheet'][2]/@href"));
+				"/html/head/link[@rel='stylesheet'][4]/@href"));
 
 		// highlighting script
 		assertEquals("text/javascript",

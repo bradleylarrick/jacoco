@@ -71,6 +71,11 @@ public abstract class PageTestBase {
 				return "CustomFooter";
 			}
 
+			public String[] getAddStylesheets() {
+				return new String[] { "jacoco-resources/additionalCss1.css",
+						"jacoco-resources/additionalCss2.css" };
+			}
+
 			public ILinkable getSessionsPage() {
 				return new LinkableStub("sessions.html", "Sessions",
 						Styles.EL_SESSION);

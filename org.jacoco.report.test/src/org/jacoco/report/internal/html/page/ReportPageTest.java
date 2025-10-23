@@ -99,9 +99,13 @@ public class ReportPageTest extends PageTestBase {
 		// language
 		assertEquals("en", support.findStr(doc, "/html/@lang"));
 
-		// style sheet
+		// style sheets
 		assertEquals("jacoco-resources/report.css", support.findStr(doc,
-				"/html/head/link[@rel='stylesheet']/@href"));
+				"/html/head/link[@rel='stylesheet'][1]/@href"));
+		assertEquals("jacoco-resources/additionalCss1.css", support.findStr(doc,
+				"/html/head/link[@rel='stylesheet'][2]/@href"));
+		assertEquals("jacoco-resources/additionalCss2.css", support.findStr(doc,
+				"/html/head/link[@rel='stylesheet'][3]/@href"));
 
 		// custom header
 		assertEquals("CustomHeader",

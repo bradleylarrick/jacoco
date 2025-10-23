@@ -106,6 +106,21 @@ public abstract class AbstractReportMojo extends AbstractMojo
 	@Parameter(property = "project", readonly = true)
 	MavenProject project;
 
+	/**
+	 * Specifies the path of an additional HTML stylesheet file relative to the
+	 * {@code jacocoDirectory} Example:
+	 *
+	 * <pre>
+	 *     &lt;addStylesheets&gt;
+	 *         &lt;addStylesheet&gt;jacoco-resources/addstylesheet.css&lt;/addStylesheet&gt;
+	 *     &lt;/addStylesheets&gt;
+	 * </pre>
+	 *
+	 * @since 0.8.15
+	 */
+	@Parameter
+	String[] addStylesheets;
+
 	public String getDescription(final Locale locale) {
 		return getName(locale) + " Coverage Report.";
 	}

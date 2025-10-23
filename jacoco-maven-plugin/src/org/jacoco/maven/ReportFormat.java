@@ -44,6 +44,9 @@ public enum ReportFormat {
 			if (mojo.footer != null) {
 				htmlFormatter.setFooterText(mojo.footer);
 			}
+			if (mojo.addStylesheets != null) {
+				htmlFormatter.setAddStylesheets(mojo.addStylesheets);
+			}
 			return htmlFormatter.createVisitor(
 					new FileMultiReportOutput(mojo.getOutputDirectory()));
 		}

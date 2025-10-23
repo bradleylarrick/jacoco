@@ -49,6 +49,7 @@ public interface IHTMLReportContext {
 	 * Returns a string of textual information to include in every page header.
 	 *
 	 * @return header text or empty string
+	 * @since 0.8.15
 	 */
 	String getHeaderText();
 
@@ -58,6 +59,14 @@ public interface IHTMLReportContext {
 	 * @return footer text or empty string
 	 */
 	String getFooterText();
+
+	/**
+	 * Returns an array of additional stylesheets to be included in every page.
+	 *
+	 * @return array of additional stylesheets
+	 * @since 0.8.15
+	 */
+	String[] getAddStylesheets();
 
 	/**
 	 * Returns the link to the sessions page.

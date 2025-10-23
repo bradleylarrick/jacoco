@@ -53,6 +53,8 @@ public class HTMLFormatter implements IHTMLReportContext {
 
 	private Locale locale = Locale.getDefault();
 
+	private String[] addStylesheets;
+
 	private String headerText = "";
 
 	private String footerText = "";
@@ -96,7 +98,18 @@ public class HTMLFormatter implements IHTMLReportContext {
 	}
 
 	/**
-	 * Sets the optional text that should be included in every header page.
+	 * Sets the optional additional stylesheets to be included in every page.
+	 *
+	 * @param addStylesheets
+	 *            one or more additional stylesheets
+	 */
+	public void setAddStylesheets(String[] addStylesheets) {
+		this.addStylesheets = addStylesheets;
+	}
+
+	/**
+	 * Sets the optional text that should be included in the header of every
+	 * page.
 	 *
 	 * @param headerText
 	 *            header text
@@ -106,7 +119,8 @@ public class HTMLFormatter implements IHTMLReportContext {
 	}
 
 	/**
-	 * Sets the optional text that should be included in every footer page.
+	 * Sets the optional text that should be included in the footer of every
+	 * page.
 	 *
 	 * @param footerText
 	 *            footer text
@@ -166,6 +180,10 @@ public class HTMLFormatter implements IHTMLReportContext {
 				CounterColumn.newMissed(entity, locale), false);
 		table.add(label, Styles.CTR2, CounterColumn.newTotal(entity, locale),
 				false);
+	}
+
+	public String[] getAddStylesheets() {
+		return addStylesheets;
 	}
 
 	public String getHeaderText() {
