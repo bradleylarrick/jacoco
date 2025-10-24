@@ -79,7 +79,6 @@ public class XMLSupport {
 
 	public Document parse(byte[] document)
 			throws SAXException, IOException, ParserConfigurationException {
-		// System.out.println(new String(document));
 		return builder
 				.parse(new InputSource(new ByteArrayInputStream(document)));
 	}
