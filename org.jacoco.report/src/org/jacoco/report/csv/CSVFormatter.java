@@ -85,8 +85,7 @@ public class CSVFormatter {
 			}
 
 			public void visitInfo(final List<SessionInfo> sessionInfos,
-					final Collection<ExecutionData> executionData)
-					throws IOException {
+					final Collection<ExecutionData> executionData) {
 				// Info not used for CSV report
 			}
 

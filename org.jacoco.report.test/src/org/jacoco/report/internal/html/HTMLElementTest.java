@@ -25,7 +25,7 @@ import org.junit.Test;
  */
 public class HTMLElementTest {
 
-	private static final String PREFIX = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\">";
+	private static final String PREFIX = "<!DOCTYPE html><html>";
 
 	private static final String SUFFIX = "</html>";
 
@@ -176,7 +176,7 @@ public class HTMLElementTest {
 	public void table_should_create_table_tag_with_attributes()
 			throws IOException {
 		root.table("tablestyle");
-		assertContent("<table class=\"tablestyle\" cellspacing=\"0\"/>");
+		assertContent("<table class=\"tablestyle\"/>");
 	}
 
 	@Test
@@ -227,8 +227,7 @@ public class HTMLElementTest {
 	public void script_should_create_script_tag_with_attributes()
 			throws IOException {
 		root.script("file.js");
-		assertContent(
-				"<script type=\"text/javascript\" src=\"file.js\"></script>");
+		assertContent("<script src=\"file.js\"></script>");
 	}
 
 	private void assertContent(String expected) throws IOException {

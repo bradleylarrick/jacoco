@@ -62,8 +62,6 @@ public class SourceFilePageTest extends PageTestBase {
 				"/html/head/link[@rel='stylesheet'][4]/@href"));
 
 		// highlighting script
-		assertEquals("text/javascript",
-				support.findStr(result, "/html/head/script/@type"));
 		assertEquals("jacoco-resources/prettify.js",
 				support.findStr(result, "/html/head/script/@src"));
 		assertEquals("window['PR_TAB_WIDTH']=4;prettyPrint()",

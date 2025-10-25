@@ -50,11 +50,8 @@ public class XMLFormatter {
 	 * @param output
 	 *            output stream to write the report to
 	 * @return visitor to emit the report data to
-	 * @throws IOException
-	 *             in case of problems with the output stream
 	 */
-	public IReportVisitor createVisitor(final OutputStream output)
-			throws IOException {
+	public IReportVisitor createVisitor(final OutputStream output) {
 		class RootVisitor implements IReportVisitor {
 
 			private ReportElement report;
@@ -62,8 +59,7 @@ public class XMLFormatter {
 			private XMLGroupVisitor groupVisitor;
 
 			public void visitInfo(final List<SessionInfo> sessionInfos,
-					final Collection<ExecutionData> executionData)
-					throws IOException {
+					final Collection<ExecutionData> executionData) {
 				this.sessionInfos = sessionInfos;
 			}
 

@@ -45,7 +45,7 @@ public class ReportElement extends XMLElement {
 	 */
 	public ReportElement(final String name, final OutputStream output,
 			final String encoding) throws IOException {
-		super("report", PUBID, SYSTEM, true, encoding, output);
+		super("report", PUBID, SYSTEM, false, true, encoding, output);
 		attr("name", name);
 	}
 

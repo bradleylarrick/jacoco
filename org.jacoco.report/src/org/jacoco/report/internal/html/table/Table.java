@@ -93,8 +93,8 @@ public class Table {
 		final HTMLElement table = parent.table(Styles.COVERAGETABLE);
 		table.attr("id", "coveragetable");
 		header(table, sortedItems, total);
-		footer(table, total, resources, base);
 		body(table, sortedItems, resources, base);
+		footer(table, total, resources, base);
 	}
 
 	private void header(final HTMLElement table,

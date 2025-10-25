@@ -36,11 +36,8 @@ public class XMLGroupVisitor extends AbstractGroupVisitor {
 	 *            must not be closed yet to allow adding additional attributes.
 	 * @param name
 	 *            name of the group
-	 * @throws IOException
-	 *             in case of problems with the underlying writer
 	 */
-	public XMLGroupVisitor(final ReportElement element, final String name)
-			throws IOException {
+	public XMLGroupVisitor(final ReportElement element, final String name) {
 		super(name);
 		this.element = element;
 	}

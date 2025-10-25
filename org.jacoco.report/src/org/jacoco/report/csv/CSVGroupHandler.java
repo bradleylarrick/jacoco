@@ -52,8 +52,7 @@ class CSVGroupHandler implements IReportGroupVisitor {
 		}
 	}
 
-	public IReportGroupVisitor visitGroup(final String name)
-			throws IOException {
+	public IReportGroupVisitor visitGroup(final String name) {
 		return new CSVGroupHandler(writer, appendName(name));
 	}
 

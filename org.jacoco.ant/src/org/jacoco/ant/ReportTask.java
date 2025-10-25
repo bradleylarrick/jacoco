@@ -169,6 +169,8 @@ public class ReportTask extends Task {
 
 		private File destfile;
 
+		private String header = "";
+
 		private String footer = "";
 
 		private String encoding = "UTF-8";
@@ -193,6 +195,17 @@ public class ReportTask extends Task {
 		 */
 		public void setDestfile(final File destfile) {
 			this.destfile = destfile;
+		}
+
+		/**
+		 * Sets an optional header text that will be displayed on every report
+		 * page.
+		 *
+		 * @param text
+		 *            header text
+		 */
+		public void setHeader(final String text) {
+			this.header = text;
 		}
 
 		/**
@@ -248,6 +261,7 @@ public class ReportTask extends Task {
 				output = new FileMultiReportOutput(destdir);
 			}
 			final HTMLFormatter formatter = new HTMLFormatter();
+			formatter.setHeaderText(header);
 			formatter.setFooterText(footer);
 			formatter.setOutputEncoding(encoding);
 			formatter.setLocale(locale);

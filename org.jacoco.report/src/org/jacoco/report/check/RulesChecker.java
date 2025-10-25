@@ -76,22 +76,20 @@ public class RulesChecker {
 				languageNames, output);
 		return new IReportVisitor() {
 
-			public IReportGroupVisitor visitGroup(final String name)
-					throws IOException {
+			public IReportGroupVisitor visitGroup(final String name) {
 				return this;
 			}
 
 			public void visitBundle(final IBundleCoverage bundle,
-					final ISourceFileLocator locator) throws IOException {
+					final ISourceFileLocator locator) {
 				bundleChecker.checkBundle(bundle);
 			}
 
 			public void visitInfo(final List<SessionInfo> sessionInfos,
-					final Collection<ExecutionData> executionData)
-					throws IOException {
+					final Collection<ExecutionData> executionData) {
 			}
 
-			public void visitEnd() throws IOException {
+			public void visitEnd() {
 			}
 		};
 	}

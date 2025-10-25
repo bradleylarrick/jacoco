@@ -202,10 +202,7 @@ public class Limit {
 			if (minmsg != null) {
 				return minmsg;
 			}
-			final String maxmsg = checkRatioLimit("maximum", maximum);
-			if (maxmsg != null) {
-				return maxmsg;
-			}
+			return checkRatioLimit("maximum", maximum);
 		}
 		return null;
 	}

@@ -48,7 +48,7 @@ public class FileMultiReportOutput implements IMultiReportOutput {
 		return new BufferedOutputStream(new FileOutputStream(file));
 	}
 
-	public void close() throws IOException {
+	public void close() {
 		// nothing to do here
 	}
 

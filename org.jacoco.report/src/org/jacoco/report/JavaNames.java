@@ -53,10 +53,8 @@ public class JavaNames implements ILanguageNames {
 			final String vmsupertype;
 			if (vminterfaces != null && vminterfaces.length > 0) {
 				vmsupertype = vminterfaces[0];
-			} else if (vmsuperclass != null) {
-				vmsupertype = vmsuperclass;
 			} else {
-				vmsupertype = null;
+				vmsupertype = vmsuperclass;
 			}
 			// append Eclipse style label, e.g. "Foo.new Bar() {...}"
 			if (vmsupertype != null) {

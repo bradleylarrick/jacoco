@@ -24,10 +24,6 @@ import org.jacoco.report.internal.xml.XMLElement;
  */
 public class HTMLElement extends XMLElement {
 
-	private static final String PUBID = "-//W3C//DTD XHTML 1.0 Strict//EN";
-
-	private static final String SYSTEM = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
-
 	/**
 	 * Creates a <code>html</code> root element of a XHTML document.
 	 *
@@ -40,8 +36,7 @@ public class HTMLElement extends XMLElement {
 	 */
 	public HTMLElement(final OutputStream output, final String encoding)
 			throws IOException {
-		super("html", PUBID, SYSTEM, false, encoding, output);
-		attr("xmlns", "http://www.w3.org/1999/xhtml");
+		super("html", null, null, true, false, encoding, output);
 	}
 
 	private HTMLElement(final String name, final HTMLElement parent)
@@ -81,6 +76,48 @@ public class HTMLElement extends XMLElement {
 	}
 
 	/**
+	 * Creates a 'header' element.
+	 *
+	 * @param classattr
+	 *            value of the class attribute
+	 * @return 'header' elemeent
+	 * @throws IOException
+	 *             in case of problems with the underlying output
+	 */
+	public HTMLElement header(final String classattr) throws IOException {
+		final HTMLElement header = element("header");
+		header.classattr(classattr);
+		// header.attr("role", "banner");
+		return header;
+	}
+
+	/**
+	 * Creates a 'main' element.
+	 *
+	 * @return 'main' element
+	 * @throws IOException
+	 *             in case of problems with the underlying output
+	 */
+	public HTMLElement mainElement() throws IOException {
+		return element("main");
+	}
+
+	/**
+	 * Creates a 'footer' element.
+	 *
+	 * @param classattr
+	 *            value of the class attribute
+	 * @return 'footer' element
+	 * @throws IOException
+	 *             in case of problems with the underlying output
+	 */
+	public HTMLElement footer(final String classattr) throws IOException {
+		final HTMLElement footer = element("footer");
+		footer.classattr(classattr);
+		return footer;
+	}
+
+	/**
 	 * Creates a 'meta' element.
 	 *
 	 * @param httpequivattr
@@ -113,7 +150,7 @@ public class HTMLElement extends XMLElement {
 	 *             in case of problems with the underlying output
 	 */
 	public HTMLElement link(final String relattr, final String hrefattr,
-			final String typeattr) throws IOException {
+			String typeattr) throws IOException {
 		final HTMLElement link = element("link");
 		link.attr("rel", relattr);
 		link.attr("href", hrefattr);
@@ -240,11 +277,11 @@ public class HTMLElement extends XMLElement {
 	}
 
 	/**
-	 * Creates a 'a' element.
+	 * Creates an 'a' element.
 	 *
 	 * @param hrefattr
 	 *            value of the href attribute
-	 * @return 'a' element
+	 * @return an 'a' element
 	 * @throws IOException
 	 *             in case of problems with the underlying output
 	 */
@@ -255,13 +292,13 @@ public class HTMLElement extends XMLElement {
 	}
 
 	/**
-	 * Creates a 'a' element.
+	 * Creates an 'a' element.
 	 *
 	 * @param hrefattr
 	 *            value of the href attribute
 	 * @param classattr
 	 *            value of the class attribute
-	 * @return 'a' element
+	 * @return an 'a' element
 	 * @throws IOException
 	 *             in case of problems with the underlying output
 	 */
@@ -279,7 +316,8 @@ public class HTMLElement extends XMLElement {
 	 *            object to link to
 	 * @param base
 	 *            base folder where the link should be placed
-	 * @return 'a' element or 'span' element, if the link target does not exist
+	 * @return an 'a' element or 'span' element, if the link target does not
+	 *         exist
 	 * @throws IOException
 	 *             in case of problems with the underlying output
 	 */
@@ -308,7 +346,7 @@ public class HTMLElement extends XMLElement {
 	public HTMLElement table(final String classattr) throws IOException {
 		final HTMLElement table = element("table");
 		table.classattr(classattr);
-		table.attr("cellspacing", "0");
+		// table.attr("cellspacing", "0");
 		return table;
 	}
 
@@ -417,7 +455,7 @@ public class HTMLElement extends XMLElement {
 	 */
 	public void script(final String srcattr) throws IOException {
 		final HTMLElement script = element("script");
-		script.attr("type", "text/javascript");
+		// script.attr("type", "text/javascript");
 		script.attr("src", srcattr);
 		// Enforce open and closing tag otherwise it won't work in browsers:
 		script.text("");

@@ -109,29 +109,29 @@ public class ReportPageTest extends PageTestBase {
 
 		// custom header
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/div[1]/text()"));
+				support.findStr(doc, "/html/body/header/text()"));
 		// bread crumb
 		assertEquals("Report", support.findStr(doc,
-				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/text()"));
+				"/html/body/header/div[@class='breadcrumb']/a[1]/text()"));
 		assertEquals("Report.html", support.findStr(doc,
-				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/@href"));
+				"/html/body/header/div[@class='breadcrumb']/a[1]/@href"));
 		assertEquals("el_report", support.findStr(doc,
-				"/html/body/div[1]/div[@class='breadcrumb']/a[1]/@class"));
+				"/html/body/header/div[@class='breadcrumb']/a[1]/@class"));
 		assertEquals("Test", support.findStr(doc,
-				"/html/body/div[1]/div[@class='breadcrumb']/span[2]/text()"));
+				"/html/body/header/div[@class='breadcrumb']/span[2]/text()"));
 		assertEquals("el_group", support.findStr(doc,
-				"/html/body/div[1]/div[@class='breadcrumb']/span[2]/@class"));
+				"/html/body/header/div[@class='breadcrumb']/span[2]/@class"));
 
 		// Header
-		assertEquals("Test", support.findStr(doc, "/html/body/h1/text()"));
+		assertEquals("Test", support.findStr(doc, "/html/body/main/h1/text()"));
 
 		// Content
 		assertEquals("Hello Test", support.findStr(doc,
-				"/html/body/div[@class='testcontent']/text()"));
+				"/html/body/main/div[@class='testcontent']/text()"));
 
 		// Footer
 		assertEquals("CustomFooter",
-				support.findStr(doc, "/html/body/div[@class='footer']/text()"));
+				support.findStr(doc, "/html/body/footer/text()"));
 	}
 
 }

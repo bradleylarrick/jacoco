@@ -98,21 +98,21 @@ public class PackageSourcePageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("index.source.html"));
 		// custom header
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/div[1]/text()"));
+				support.findStr(doc, "/html/body/header/text()"));
 		assertEquals("index.html", support.findStr(doc,
-				"/html/body/div[1]/div[1]/span[1]/a/@href"));
+				"/html/body/header/div[1]/span[1]/a/@href"));
 		assertEquals("el_class", support.findStr(doc,
-				"/html/body/div[1]/div[1]/span[1]/a/@class"));
+				"/html/body/header/div[1]/span[1]/a/@class"));
 		assertEquals("Classes",
-				support.findStr(doc, "/html/body/div[1]/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/header/div[1]/span[1]/a"));
 		assertEquals("el_source", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@class"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("Src1.java", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a"));
 		assertEquals("el_source", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[2]/td[1]/span/@class"));
+				"/html/body/main/table[1]/tbody/tr[2]/td[1]/span/@class"));
 		assertEquals("Src2.java", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[2]/td[1]/span"));
+				"/html/body/main/table[1]/tbody/tr[2]/td[1]/span"));
 	}
 
 	@Test
@@ -133,9 +133,9 @@ public class PackageSourcePageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("index.source.html"));
 		assertEquals("NonEmpty.java", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/span"));
-		assertEquals("1",
-				support.findStr(doc, "count(/html/body/table[1]/tbody/tr)"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/span"));
+		assertEquals("1", support.findStr(doc,
+				"count(/html/body/main/table[1]/tbody/tr)"));
 	}
 
 	@Test

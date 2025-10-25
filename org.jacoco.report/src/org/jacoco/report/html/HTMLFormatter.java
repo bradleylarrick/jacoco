@@ -233,8 +233,7 @@ public class HTMLFormatter implements IHTMLReportContext {
 			private HTMLGroupVisitor groupHandler;
 
 			public void visitInfo(final List<SessionInfo> sessionInfos,
-					final Collection<ExecutionData> executionData)
-					throws IOException {
+					final Collection<ExecutionData> executionData) {
 				this.sessionInfos = sessionInfos;
 				this.executionData = executionData;
 			}
@@ -247,8 +246,7 @@ public class HTMLFormatter implements IHTMLReportContext {
 				page.render();
 			}
 
-			public IReportGroupVisitor visitGroup(final String name)
-					throws IOException {
+			public IReportGroupVisitor visitGroup(final String name) {
 				groupHandler = new HTMLGroupVisitor(null, root,
 						HTMLFormatter.this, name);
 				createSessionsPage(groupHandler.getPage());

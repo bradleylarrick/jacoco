@@ -76,9 +76,9 @@ public class SessionsPageTest extends PageTestBase {
 		final Document doc = support
 				.parse(output.getFile("jacoco-sessions.html"));
 		assertEquals("No session information available.",
-				support.findStr(doc, "/html/body/p[1]"));
+				support.findStr(doc, "/html/body/main/p[1]"));
 		assertEquals("No execution data available.",
-				support.findStr(doc, "/html/body/p[2]"));
+				support.findStr(doc, "/html/body/main/p[2]"));
 	}
 
 	@Test
@@ -93,13 +93,13 @@ public class SessionsPageTest extends PageTestBase {
 		final Document doc = support
 				.parse(output.getFile("jacoco-sessions.html"));
 		assertEquals("el_session", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/span/@class"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/span/@class"));
 		assertEquals("Session-A", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/span"));
-		assertEquals("Session-B",
-				support.findStr(doc, "/html/body/table[1]/tbody/tr[2]/td[1]"));
-		assertEquals("Session-C",
-				support.findStr(doc, "/html/body/table[1]/tbody/tr[3]/td[1]"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/span"));
+		assertEquals("Session-B", support.findStr(doc,
+				"/html/body/main/table[1]/tbody/tr[2]/td[1]"));
+		assertEquals("Session-C", support.findStr(doc,
+				"/html/body/main/table[1]/tbody/tr[3]/td[1]"));
 	}
 
 	@Test
@@ -134,17 +134,17 @@ public class SessionsPageTest extends PageTestBase {
 		final Document doc = support
 				.parse(output.getFile("jacoco-sessions.html"));
 		assertEquals("el_class", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@class"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("Foo.html", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@href"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a/@href"));
 		assertEquals("ClassA", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a"));
 		assertEquals("0000000000001002", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[2]/code"));
-		assertEquals("ClassB",
-				support.findStr(doc, "/html/body/table[1]/tbody/tr[2]/td[1]"));
-		assertEquals("ClassC",
-				support.findStr(doc, "/html/body/table[1]/tbody/tr[3]/td[1]"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[2]/code"));
+		assertEquals("ClassB", support.findStr(doc,
+				"/html/body/main/table[1]/tbody/tr[2]/td[1]"));
+		assertEquals("ClassC", support.findStr(doc,
+				"/html/body/main/table[1]/tbody/tr[3]/td[1]"));
 	}
 
 }

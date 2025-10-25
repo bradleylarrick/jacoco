@@ -45,7 +45,8 @@ public class XMLSupport {
 			throws ParserConfigurationException {
 		final DocumentBuilderFactory builderFactory = DocumentBuilderFactory
 				.newInstance();
-		builderFactory.setValidating(true);
+		// HTML 5 is not pure xml, so we can't validate with Xerces.
+		// builderFactory.setValidating(true);
 		builder = builderFactory.newDocumentBuilder();
 		builder.setEntityResolver(new LocalEntityResolver(resourceDelegate));
 		builder.setErrorHandler(new ErrorHandler() {

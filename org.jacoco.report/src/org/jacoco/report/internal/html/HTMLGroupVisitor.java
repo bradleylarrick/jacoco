@@ -75,8 +75,7 @@ public class HTMLGroupVisitor extends AbstractGroupVisitor {
 	}
 
 	@Override
-	protected AbstractGroupVisitor handleGroup(final String name)
-			throws IOException {
+	protected AbstractGroupVisitor handleGroup(final String name) {
 		final HTMLGroupVisitor handler = new HTMLGroupVisitor(page,
 				folder.subFolder(name), context, name);
 		page.addItem(handler.getPage());

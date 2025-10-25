@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 /**
- * Simple API to create well formed XML streams with minimal memory overhead. An
+ * Simple API to create well-formed XML streams with minimal memory overhead. An
  * {@link XMLElement} instance represents a single element in an XML document.
  * {@link XMLElement} can be used directly or might be subclassed for schema
  * specific convenience methods.
@@ -36,6 +36,9 @@ public class XMLElement {
 	/** DOCTYPE declaration template */
 	private static final String DOCTYPE = "<!DOCTYPE %s PUBLIC \"%s\" \"%s\">";
 
+	/** DOCTYPE for HTML5 declaration template */
+	private static final String DOCTYPE5 = "<!DOCTYPE %s>";
+
 	/** Writer for content output */
 	protected final Writer writer;
 
@@ -45,17 +48,17 @@ public class XMLElement {
 
 	private boolean closed;
 
-	private XMLElement lastchild;
+	private XMLElement lastChild;
 
 	private final boolean root;
 
 	private XMLElement(final Writer writer, final String name,
-			final boolean root) throws IOException {
+			final boolean root) {
 		this.writer = writer;
 		this.name = name;
 		this.openTagDone = false;
 		this.closed = false;
-		this.lastchild = null;
+		this.lastChild = null;
 		this.root = root;
 	}
 
@@ -68,6 +71,9 @@ public class XMLElement {
 	 *            optional schema public identifier
 	 * @param system
 	 *            optional schema system identifier
+	 * @param html5
+	 *            if <code>true</code> the document is an HTML 5 document (only
+	 *            tested if {@code pubId} is {@code null})
 	 * @param standalone
 	 *            if <code>true</code> the document is declared as standalone
 	 * @param encoding
@@ -78,17 +84,19 @@ public class XMLElement {
 	 *             in case of problems with the underlying output
 	 */
 	public XMLElement(final String name, final String pubId,
-			final String system, final boolean standalone,
+			final String system, final boolean html5, final boolean standalone,
 			final String encoding, final OutputStream output)
 			throws IOException {
 		this(new OutputStreamWriter(output, encoding), name, true);
 		if (standalone) {
 			writer.write(format(HEADER_STANDALONE, encoding));
-		} else {
+		} else if (!html5) {
 			writer.write(format(HEADER, encoding));
 		}
 		if (pubId != null) {
 			writer.write(format(DOCTYPE, name, pubId, system));
+		} else if (html5) {
+			writer.write(format(DOCTYPE5, name));
 		}
 		writer.write('<');
 		writer.write(name);
@@ -119,10 +127,10 @@ public class XMLElement {
 			throw new IOException(format("Element %s already closed.", name));
 		}
 		finishOpenTag();
-		if (lastchild != null) {
-			lastchild.close();
+		if (lastChild != null) {
+			lastChild.close();
 		}
-		lastchild = child;
+		lastChild = child;
 	}
 
 	private void finishOpenTag() throws IOException {
@@ -238,8 +246,8 @@ public class XMLElement {
 			throw new IOException(format("Element %s already closed.", name));
 		}
 		finishOpenTag();
-		if (lastchild != null) {
-			lastchild.close();
+		if (lastChild != null) {
+			lastChild.close();
 		}
 		quote(text);
 	}
@@ -259,8 +267,8 @@ public class XMLElement {
 			throw new IOException(format("Element %s already closed.", name));
 		}
 		finishOpenTag();
-		if (lastchild != null) {
-			lastchild.close();
+		if (lastChild != null) {
+			lastChild.close();
 		}
 		writer.write(text);
 	}
@@ -287,8 +295,8 @@ public class XMLElement {
 	 */
 	public final void close() throws IOException {
 		if (!closed) {
-			if (lastchild != null) {
-				lastchild.close();
+			if (lastChild != null) {
+				lastChild.close();
 			}
 			if (openTagDone) {
 				writer.write('<');
@@ -305,5 +313,4 @@ public class XMLElement {
 			}
 		}
 	}
-
 }

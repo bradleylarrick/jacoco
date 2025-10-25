@@ -104,8 +104,7 @@ public class HTMLFormatterTest {
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(
 				output.getFileAsStream("index.html"), "UTF-8"));
 		final String line = reader.readLine();
-		assertTrue(line,
-				line.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\""));
+		assertTrue(line, line.startsWith("<!DOCTYPE html><html lang=\"en\">"));
 	}
 
 	@Test
@@ -115,8 +114,7 @@ public class HTMLFormatterTest {
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(
 				output.getFileAsStream("index.html"), "UTF-16"));
 		final String line = reader.readLine();
-		assertTrue(line,
-				line.startsWith("<?xml version=\"1.0\" encoding=\"UTF-16\""));
+		assertTrue(line, line.startsWith("<!DOCTYPE html><html lang=\"en\">"));
 	}
 
 	@Test

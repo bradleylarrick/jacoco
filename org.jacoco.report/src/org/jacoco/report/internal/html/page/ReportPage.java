@@ -109,11 +109,20 @@ public abstract class ReportPage implements ILinkable {
 		head.title().text(getLinkLabel());
 	}
 
+	/**
+	 * Creates the elements within the body element (header, main and footer).
+	 *
+	 * @param body
+	 *            the body tag of the page
+	 * @throws IOException
+	 *             in case of IO problems with the report writer
+	 */
 	private void body(final HTMLElement body) throws IOException {
 		body.attr("onload", getOnload());
 		header(body);
-		body.h1().text(getLinkLabel());
-		content(body);
+		final HTMLElement main = body.mainElement();
+		main.h1().text(getLinkLabel());
+		content(main);
 		footer(body);
 	}
 
@@ -139,7 +148,7 @@ public abstract class ReportPage implements ILinkable {
 	}
 
 	private void header(final HTMLElement body) throws IOException {
-		final HTMLElement header = body.div(Styles.HEADER);
+		final HTMLElement header = body.header(Styles.HEADER);
 		header.verbatim(substituteSiteRoot(context.getHeaderText()));
 		final HTMLElement navigation = header.div(Styles.BREADCRUMB);
 		navigation.attr("id", "breadcrumb");
@@ -164,7 +173,7 @@ public abstract class ReportPage implements ILinkable {
 	}
 
 	private void footer(final HTMLElement body) throws IOException {
-		final HTMLElement footer = body.div(Styles.FOOTER);
+		final HTMLElement footer = body.footer(Styles.FOOTER);
 		final HTMLElement versionInfo = footer.span(Styles.RIGHT);
 		versionInfo.text("Created with ");
 		versionInfo.a(JaCoCo.HOMEURL).text("JaCoCo");

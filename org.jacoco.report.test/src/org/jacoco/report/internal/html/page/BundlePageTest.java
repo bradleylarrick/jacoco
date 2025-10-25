@@ -68,11 +68,11 @@ public class BundlePageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("index.html"));
 		assertEquals("el_package", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a/@class"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("example", support.findStr(doc,
-				"/html/body/table[1]/tbody/tr[1]/td[1]/a"));
-		assertEquals("1",
-				support.findStr(doc, "count(/html/body/table[1]/tbody/tr)"));
+				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a"));
+		assertEquals("1", support.findStr(doc,
+				"count(/html/body/main/table[1]/tbody/tr)"));
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class BundlePageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("index.html"));
 		assertEquals("No class files specified.",
-				support.findStr(doc, "/html/body/p"));
+				support.findStr(doc, "/html/body/main/p"));
 	}
 
 	@Test
@@ -106,7 +106,7 @@ public class BundlePageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("index.html"));
 		assertEquals(
 				"None of the analyzed classes contain code relevant for code coverage.",
-				support.findStr(doc, "/html/body/p"));
+				support.findStr(doc, "/html/body/main/p"));
 	}
 
 }

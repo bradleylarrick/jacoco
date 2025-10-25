@@ -107,7 +107,7 @@ public class TableTest {
 		table.add("Header", null, recorder, false);
 		table.render(body, items, createTotal("Sum", 6), resources, root);
 		html.close();
-		assertEquals("init-footer-itemA-itemB-itemC-", recorder.toString());
+		assertEquals("init-itemA-itemB-itemC-footer-", recorder.toString());
 	}
 
 	@Test
