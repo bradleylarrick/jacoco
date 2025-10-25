@@ -226,12 +226,16 @@ table.coverage tfoot td.ctr2 {
   padding-left:2px;
 }
 
-.header {
-  padding-top: 12px;
+header, .header {
+  padding-top: 6px;
 }
 
-.footer {
-  margin-top:20px;
+main {
+  padding: 6px 12px;
+}
+
+footer, .footer {
+  margin:12px;
   border-top:#d6d3ce 1px solid;
   padding-top:2px;
   font-size:8pt;
