@@ -14,7 +14,6 @@ package org.jacoco.report.internal.html.page;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,8 +51,7 @@ public class PackagePageTest extends PageTestBase {
 				return 4;
 			}
 
-			public Reader getSourceFile(String packageName, String fileName)
-					throws IOException {
+			public Reader getSourceFile(String packageName, String fileName) {
 				return null;
 			}
 		};
@@ -80,9 +78,9 @@ public class PackagePageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("index.html"));
 		assertEquals("NonEmptyClass", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a"));
+				"/html/body/div/div/main/table[1]/tbody/tr[1]/td[1]/a"));
 		assertEquals("1", support.findStr(doc,
-				"count(/html/body/main/table[1]/tbody/tr)"));
+				"count(/html/body/div/div/main/table[1]/tbody/tr)"));
 	}
 
 	@Test
@@ -110,22 +108,22 @@ public class PackagePageTest extends PageTestBase {
 
 		// custom header
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/header/text()"));
+				support.findStr(doc, "/html/body/div/header/text()"));
 		// Expect "Source Files" links
 		assertEquals("index.source.html", support.findStr(doc,
-				"/html/body/header/div[1]/span[1]/a/@href"));
+				"/html/body/div/header/div[1]/span[1]/a/@href"));
 		assertEquals("el_source", support.findStr(doc,
-				"/html/body/header/div[1]/span[1]/a/@class"));
+				"/html/body/div/header/div[1]/span[1]/a/@class"));
 		assertEquals("Source Files",
-				support.findStr(doc, "/html/body/header/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/div/header/div[1]/span[1]/a"));
 		assertEquals("el_class", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a/@class"));
+				"/html/body/div/div/main/table[1]/tbody/tr[1]/td[1]/a/@class"));
 		assertEquals("Foo1", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[1]/td[1]/a"));
+				"/html/body/div/div/main/table[1]/tbody/tr[1]/td[1]/a"));
 		assertEquals("el_class", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[2]/td[1]/a/@class"));
+				"/html/body/div/div/main/table[1]/tbody/tr[2]/td[1]/a/@class"));
 		assertEquals("Foo2", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[2]/td[1]/a"));
+				"/html/body/div/div/main/table[1]/tbody/tr[2]/td[1]/a"));
 
 		output.assertFile("index.source.html");
 	}
@@ -153,9 +151,9 @@ public class PackagePageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("index.html"));
 		// custom header
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/header/text()"));
+				support.findStr(doc, "/html/body/div/header/text()"));
 		assertEquals("Sessions",
-				support.findStr(doc, "/html/body/header/div[1]/span[1]/a"));
+				support.findStr(doc, "/html/body/div/header/div[1]/span[1]/a"));
 
 		// Expect no source files page:
 		output.assertNoFile("index.source.html");

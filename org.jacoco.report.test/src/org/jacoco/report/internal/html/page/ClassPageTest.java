@@ -14,8 +14,6 @@ package org.jacoco.report.internal.html.page;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
-
 import org.jacoco.core.analysis.IClassCoverage;
 import org.jacoco.core.internal.analysis.ClassCoverageImpl;
 import org.jacoco.core.internal.analysis.CounterImpl;
@@ -54,15 +52,15 @@ public class ClassPageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/header/text()"));
+				support.findStr(doc, "/html/body/div/header/text()"));
 		assertEquals("el_method", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[1]/td[1]/span/@class"));
+				"/html/body/div/div/main/table[1]/tbody/tr[1]/td[1]/span/@class"));
 		assertEquals("a()", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[1]/td[1]/span"));
+				"/html/body/div/div/main/table[1]/tbody/tr[1]/td[1]/span"));
 		assertEquals("b()", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[2]/td[1]/span"));
+				"/html/body/div/div/main/table[1]/tbody/tr[2]/td[1]/span"));
 		assertEquals("c()", support.findStr(doc,
-				"/html/body/main/table[1]/tbody/tr[3]/td[1]/span"));
+				"/html/body/div/div/main/table[1]/tbody/tr[3]/td[1]/span"));
 	}
 
 	@Test
@@ -74,7 +72,7 @@ public class ClassPageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals(
 				"Class files must be compiled with debug information to link with source files.",
-				support.findStr(doc, "/html/body/main/p[1]"));
+				support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	@Test
@@ -88,7 +86,7 @@ public class ClassPageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals(
 				"Source file \"org/jacoco/example/Foo.java\" was not found during generation of report.",
-				support.findStr(doc, "/html/body/main/p[1]"));
+				support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	@Test
@@ -106,7 +104,7 @@ public class ClassPageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals(
 				"Source file \"Foo.java\" was not found during generation of report.",
-				support.findStr(doc, "/html/body/main/p[1]"));
+				support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	@Test
@@ -118,7 +116,7 @@ public class ClassPageTest extends PageTestBase {
 		page.render();
 
 		final Document doc = support.parse(output.getFile("Foo.html"));
-		assertEquals("", support.findStr(doc, "/html/body/main/p[1]"));
+		assertEquals("", support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	@Test
@@ -132,7 +130,7 @@ public class ClassPageTest extends PageTestBase {
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals(
 				"Class files must be compiled with debug information to show line coverage.",
-				support.findStr(doc, "/html/body/main/p[1]"));
+				support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	@Test
@@ -146,7 +144,7 @@ public class ClassPageTest extends PageTestBase {
 
 		final Document doc = support.parse(output.getFile("Foo.html"));
 		assertEquals("A different version of class was executed at runtime.",
-				support.findStr(doc, "/html/body/main/p[1]"));
+				support.findStr(doc, "/html/body/div/div/main/p[1]"));
 	}
 
 	private static class SourceLink implements ILinkable {
@@ -166,20 +164,20 @@ public class ClassPageTest extends PageTestBase {
 	}
 
 	@Test
-	public void testGetFileName() throws IOException {
+	public void testGetFileName() {
 		page = new ClassPage(node, null, null, rootFolder, context);
 		assertEquals("Foo.html", page.getFileName());
 	}
 
 	@Test
-	public void testGetFileNameDefault() throws IOException {
+	public void testGetFileNameDefault() {
 		IClassCoverage defaultNode = new ClassCoverageImpl("Foo", 123, false);
 		page = new ClassPage(defaultNode, null, null, rootFolder, context);
 		assertEquals("Foo.html", page.getFileName());
 	}
 
 	@Test
-	public void testGetLinkLabel() throws IOException {
+	public void testGetLinkLabel() {
 		page = new ClassPage(node, null, null, rootFolder, context);
 		assertEquals("Foo", page.getLinkLabel());
 	}

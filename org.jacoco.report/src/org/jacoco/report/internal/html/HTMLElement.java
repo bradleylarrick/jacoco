@@ -181,6 +181,17 @@ public class HTMLElement extends XMLElement {
 	}
 
 	/**
+	 * Creates a 'hr' element.
+	 *
+	 * @return 'hr' element
+	 * @throws IOException
+	 *             in case of problems with the underlying output
+	 */
+	public HTMLElement hr() throws IOException {
+		return element("hr");
+	}
+
+	/**
 	 * Creates a 'p' element.
 	 *
 	 * @return 'p' element

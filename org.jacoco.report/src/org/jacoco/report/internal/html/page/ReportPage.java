@@ -121,11 +121,13 @@ public abstract class ReportPage implements ILinkable {
 	 */
 	private void body(final HTMLElement body) throws IOException {
 		body.attr("onload", getOnload());
-		header(body);
-		final HTMLElement main = body.mainElement();
+		final HTMLElement flexbox = body.div(Styles.FLEX_BOX);
+		header(flexbox);
+		final HTMLElement content = flexbox.div(Styles.FLEX_CONTENT);
+		final HTMLElement main = content.mainElement();
 		main.h1().text(getLinkLabel());
 		content(main);
-		footer(body);
+		footer(content);
 	}
 
 	/**
@@ -176,6 +178,7 @@ public abstract class ReportPage implements ILinkable {
 
 	private void footer(final HTMLElement body) throws IOException {
 		final HTMLElement footer = body.footer(Styles.FOOTER);
+		footer.hr();
 		final HTMLElement versionInfo = footer.span(Styles.RIGHT);
 		versionInfo.text("Created with ");
 		versionInfo.a(JaCoCo.HOMEURL).text("JaCoCo");

@@ -17,6 +17,12 @@ package org.jacoco.report.internal.html.resources;
  */
 public final class Styles {
 
+	/** Wrapper for body */
+	public static final String FLEX_BOX = "flex-box";
+
+	/** Wrapper for main content */
+	public static final String FLEX_CONTENT = "flex-content";
+
 	/** Breadcrumb bar */
 	public static final String BREADCRUMB = "breadcrumb";
 

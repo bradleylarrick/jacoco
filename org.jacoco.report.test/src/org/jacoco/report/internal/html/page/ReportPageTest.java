@@ -85,7 +85,7 @@ public class ReportPageTest extends PageTestBase {
 	}
 
 	@Test
-	public void testGetLink() throws IOException {
+	public void testGetLink() {
 		ReportOutputFolder base = rootFolder.subFolder("here");
 		assertEquals("../Test.html", page.getLink(base));
 	}
@@ -109,29 +109,30 @@ public class ReportPageTest extends PageTestBase {
 
 		// custom header
 		assertEquals("CustomHeader",
-				support.findStr(doc, "/html/body/header/text()"));
+				support.findStr(doc, "/html/body/div/header/text()"));
 		// bread crumb
 		assertEquals("Report", support.findStr(doc,
-				"/html/body/header/div[@class='breadcrumb']/a[1]/text()"));
+				"/html/body/div/header/div[@class='breadcrumb']/a[1]/text()"));
 		assertEquals("Report.html", support.findStr(doc,
-				"/html/body/header/div[@class='breadcrumb']/a[1]/@href"));
+				"/html/body/div/header/div[@class='breadcrumb']/a[1]/@href"));
 		assertEquals("el_report", support.findStr(doc,
-				"/html/body/header/div[@class='breadcrumb']/a[1]/@class"));
+				"/html/body/div/header/div[@class='breadcrumb']/a[1]/@class"));
 		assertEquals("Test", support.findStr(doc,
-				"/html/body/header/div[@class='breadcrumb']/span[2]/text()"));
+				"/html/body/div/header/div[@class='breadcrumb']/span[2]/text()"));
 		assertEquals("el_group", support.findStr(doc,
-				"/html/body/header/div[@class='breadcrumb']/span[2]/@class"));
+				"/html/body/div/header/div[@class='breadcrumb']/span[2]/@class"));
 
 		// Header
-		assertEquals("Test", support.findStr(doc, "/html/body/main/h1/text()"));
+		assertEquals("Test",
+				support.findStr(doc, "/html/body/div/div/main/h1/text()"));
 
 		// Content
 		assertEquals("Hello Test", support.findStr(doc,
-				"/html/body/main/div[@class='testcontent']/text()"));
+				"/html/body/div/div/main/div[@class='testcontent']/text()"));
 
 		// Footer
 		assertEquals("CustomFooter",
-				support.findStr(doc, "/html/body/footer/text()"));
+				support.findStr(doc, "/html/body/div/div/footer/text()"));
 	}
 
 }
