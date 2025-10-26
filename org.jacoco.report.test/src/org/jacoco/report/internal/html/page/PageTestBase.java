@@ -72,8 +72,8 @@ public abstract class PageTestBase {
 			}
 
 			public String[] getAddStylesheets() {
-				return new String[] { "jacoco-resources/additionalCss1.css",
-						"jacoco-resources/additionalCss2.css" };
+				return new String[] { "additionalCss1.css",
+						"additionalCss2.css" };
 			}
 
 			public ILinkable getSessionsPage() {
