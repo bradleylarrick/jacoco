@@ -107,8 +107,8 @@ public abstract class AbstractReportMojo extends AbstractMojo
 	MavenProject project;
 
 	/**
-	 * Specifies the path of an additional HTML stylesheet file relative to the
-	 * Jacoco resources directory. Example:
+	 * Specifies the name of an additional HTML stylesheet file, assumed to be
+	 * in the {@code jacoco-resources} directory. Example:
 	 *
 	 * <pre>
 	 *     &lt;addStylesheets&gt;
