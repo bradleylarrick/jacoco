@@ -100,7 +100,9 @@ public abstract class ReportPage implements ILinkable {
 				"text/css");
 		if (context.getAddStylesheets() != null) {
 			for (final String stylesheet : context.getAddStylesheets()) {
-				head.link("stylesheet", stylesheet, "text/css");
+				head.link("stylesheet",
+						context.getResources().getLink(folder, stylesheet),
+						"text/css");
 			}
 		}
 		head.link("shortcut icon",

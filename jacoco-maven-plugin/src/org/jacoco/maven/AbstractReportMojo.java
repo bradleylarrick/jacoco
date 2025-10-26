@@ -108,11 +108,11 @@ public abstract class AbstractReportMojo extends AbstractMojo
 
 	/**
 	 * Specifies the path of an additional HTML stylesheet file relative to the
-	 * {@code jacocoDirectory} Example:
+	 * Jacoco resources directory. Example:
 	 *
 	 * <pre>
 	 *     &lt;addStylesheets&gt;
-	 *         &lt;addStylesheet&gt;jacoco-resources/addstylesheet.css&lt;/addStylesheet&gt;
+	 *         &lt;addStylesheet&gt;addstylesheet.css&lt;/addStylesheet&gt;
 	 *     &lt;/addStylesheets&gt;
 	 * </pre>
 	 *
